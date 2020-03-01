@@ -36,7 +36,7 @@
         <option value="/25">25</option>
       </select>
       <label for="vendor"></label>
-      <select name="vendor" id="vendor" v-model="type">
+      <select name="vendor" id="vendor" class="vendor" v-model="type">
         <option value="bitcoin">Bitcoin Inc</option>
         <option value="blockchain">Blockchain Inc</option>
         <option value="evil">Evil Crop</option>
@@ -60,41 +60,38 @@ export default {
       validMonth: "",
       validYear: "",
       type: "",
-      color: "#ffae34",
-      svg: "vendor-bitcoin.svg",
+      color: ["#ffae34", "#8b58f9", "#f33355", "#222", "#eee"],
+      svg: [
+        "vendor-bitcoin.svg",
+        "vendor-blockchain.svg",
+        "vendor-evil.svg",
+        "vendor-ninja.svg"
+      ],
       chip: "chip-dark.svg"
     };
   },
   methods: {
-    /*changeColor(type) {
-      switch (type) {
+    addNewCard() {
+      let position = this.type;
+      switch (position) {
         case "bitcoin":
-          (this.data.color = "#ffae34"), (this.data.svg = "vendor-bitcoin.svg");
-          this.data.chip = "chip-dark.svg";
+          position = 0;
           break;
         case "blockchain":
-          (this.data.color = "#8b58f9"),
-            (this.data.svg = "vendor-blockchain.svg");
-          this.data.chip = "chip-dark.svg";
+          position = 1;
           break;
         case "evil":
-          (this.data.color = "#f33355"), (this.data.svg = "vendor-evil.svg");
-          this.data.chip = "chip-dark.svg";
+          position = 2;
           break;
         case "ninja":
-          (this.data.color = "#222"), (this.data.svg = "endor-ninja.svg");
-          this.data.chip = "chip-light.svg";
-
+          position = 3;
           break;
+        default:
+          position = 4;
       }
-    },*/
-    /*getType(type) {
-      const changeType = this.type;
-      var color = "";
-      this.color;
-    },*/
-
-    addNewCard() {
+      let color = this.color[position];
+      console.log(color);
+      let svg = this.svg[position];
       const newCard = {
         id: this.id,
         name: this.name,
@@ -102,8 +99,8 @@ export default {
         validMonth: this.validMonth,
         validYear: this.validYear,
         type: this.type,
-        color: this.color,
-        svg: this.svg,
+        color: color,
+        svg: svg,
         chip: this.chip
       };
 
