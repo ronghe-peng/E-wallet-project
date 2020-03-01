@@ -68,7 +68,12 @@ export default {
         "vendor-ninja.svg",
         ""
       ],
-      chip: "chip-dark.svg"
+      chip: [
+        "chip-dark.svg",
+        "chip-dark.svg",
+        "chip-dark.svg",
+        "chip-light.svg"
+      ]
     };
   },
   methods: {
@@ -91,8 +96,8 @@ export default {
           position = 4;
       }
       let color = this.color[position];
-      console.log(color);
       let svg = this.svg[position];
+      let chip = this.chip[position];
       const newCard = {
         id: this.id,
         name: this.name,
@@ -102,7 +107,7 @@ export default {
         type: this.type,
         color: color,
         svg: svg,
-        chip: this.chip
+        chip: chip
       };
 
       this.$root.$data.cards.push(newCard);
