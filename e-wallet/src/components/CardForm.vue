@@ -65,7 +65,8 @@ export default {
         "vendor-bitcoin.svg",
         "vendor-blockchain.svg",
         "vendor-evil.svg",
-        "vendor-ninja.svg"
+        "vendor-ninja.svg",
+        ""
       ],
       chip: "chip-dark.svg"
     };
