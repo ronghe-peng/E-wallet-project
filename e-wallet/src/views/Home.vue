@@ -4,7 +4,7 @@
     <Card v-bind:card="seletethisCard" />
     <CardStack v-bind:cards="cards" v-on:sendId="seleteCard"></CardStack>
     <router-link to="/Addcard">
-      <button>Add new card</button>
+      <button>ADD NEW CARD</button>
     </router-link>
     <router-view />
   </div>
@@ -20,7 +20,7 @@ export default {
   name: "Home",
   data() {
     return {
-      selectedId: 1
+      selectedId: this.$root.$data.cards[0].id
     };
   },
   components: {
@@ -43,8 +43,20 @@ export default {
   }
 };
 </script>
-<style scoped>
-.home {
-  margin: auto;
+<style scope>
+button {
+  width: 100%;
+  margin-top: 1rem;
+  background: #eee;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 13px;
+  border: 2px solid black;
+  color: black;
+  border-radius: 5px;
+}
+button:hover {
+  background: black;
+  color: #eee;
 }
 </style>

@@ -1,8 +1,11 @@
 <template>
   <div class="cardstack">
-    <div v-for="card in cards" v-bind:key="card.id" v-on:click="emitId(card.id)">
-      <Card v-bind:card="card"></Card>
-    </div>
+    <Card
+      v-bind:card="card"
+      v-for="card in cards"
+      v-bind:key="card.id"
+      v-on:click.native="emitId(card.id)"
+    ></Card>
   </div>
 </template>
 
@@ -27,5 +30,8 @@ export default {
 <style scoped>
 .cardstack {
   margin-top: 2rem;
+  margin-bottom: 10rem;
+  display: grid;
+  grid-auto-rows: 4rem;
 }
 </style>
