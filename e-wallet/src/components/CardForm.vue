@@ -7,6 +7,7 @@
         placeholder="XXXX XXXX XXXX XXXX"
         v-model="card.number"
         v-on:input="emitUpdate"
+        maxlength="16"
       />
       <label>CARDHOLDER NAME</label>
       <input
@@ -69,8 +70,8 @@ export default {
         id: Date.now(),
         name: "",
         number: "",
-        validMonth: "",
-        validYear: "",
+        validMonth: "mm",
+        validYear: "/yy",
         type: "",
         color: "",
         svg: "",
@@ -95,8 +96,9 @@ export default {
         svg: this.card.svg,
         chip: this.card.chip
       };
+      this.$root.$emit("addCard", newCard);
 
-      this.$root.$data.cards.push(newCard);
+      //this.$root.$data.cards.push(newCard);
       //this.$router.push("/")
     }
     /*changePic(event) {

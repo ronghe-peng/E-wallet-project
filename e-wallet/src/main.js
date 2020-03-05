@@ -21,6 +21,28 @@ new Vue({
       cards: json.cards
     };
   },
+  mounted() {
+    if (localStorage.getItem("card")) {
+      try {
+        this.cards = JSON.parse(localStorage.getItem("card"));
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    this.$root.$on("addCard", card => {
+      this.cards.push(card);
+      const parsed = JSON.stringify(this.cards);
+      localStorage.setItem("card", parsed);
+    });
+
+    /*this.$root.$on("remove", id => {
+      this.cards = JSON.parse(localStorage.getItem("card"));
+      this.cards = this.cards.fliter(card => card.id != id);
+      //const parsed = JSON.stringify(this.cards);
+      localStorage.setItem("card", JSON.stringify(this.cards));
+    });*/
+  },
 
   render: h => h(App)
 }).$mount("#app");

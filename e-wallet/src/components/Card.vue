@@ -1,6 +1,8 @@
 <template>
   <div class="card">
     <div class="cardItem" v-bind:class="card.type">
+      <!--<button v-on:click="removeCard">delete</button>-->
+      <!--<span class="remove" v-on:click="remove">&times;</span>-->
       <header>
         <img v-bind:src="require(`@/assets/vendor-${card.type}.svg`)" v-if="card.type" />
         <img v-bind:src="require(`@/assets/${card.chip}`)" v-if="card.chip" />
@@ -35,11 +37,29 @@ export default {
         .join(" ")
         .trim();
     }
+    /*cards() {
+      return this.$root.$data.cards;
+    },
+    selectedId: null*/
+  },
+  methods: {
+    /*remove() {
+      this.$root.$emit("remove", this.card.id);
+    }*/
+    /*removeCard() {
+      this.$root.$data.cards = this.$root.$data.cards.fliter(
+        card => card.id != this.selectedId,
+        localStorage.setItem(JSON.stringify(this.$root.$data.cards))
+      );
+    }*/
   }
 };
 </script>
 
 <style scoped>
+.card {
+  z-index: 1;
+}
 .cardItem {
   width: 24rem;
   height: 14rem;
