@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <Top title="E-WALLET" subtitle="ACTIVE CARD" />
-    <Card v-bind:card="seletethisCard" />
+    <Card v-if="!seletethisCard" v-bind:card="cardId" />
+    <Card v-else v-bind:card="seletethisCard" />
     <CardStack v-bind:cards="cards" v-on:sendId="seleteCard"></CardStack>
     <router-link to="/Addcard">
       <button>ADD NEW CARD</button>
@@ -20,6 +21,7 @@ export default {
   name: "Home",
   data() {
     return {
+      cardId: this.$root.$data.cards[0],
       selectedId: this.$root.$data.cards[0].id
     };
   },
