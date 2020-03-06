@@ -6,6 +6,7 @@
       <header>
         <img v-bind:src="require(`@/assets/vendor-${card.type}.svg`)" v-if="card.type" />
         <img v-bind:src="require(`@/assets/${card.chip}`)" v-if="card.chip" />
+        <button class="remove" v-on:click="remove">X</button>
       </header>
       <section class="number">
         <p>{{formatCardNumber}}</p>
@@ -37,28 +38,25 @@ export default {
         .join(" ")
         .trim();
     }
-    /*cards() {
-      return this.$root.$data.cards;
-    },
-    selectedId: null*/
   },
   methods: {
-    /*remove() {
-      this.$root.$emit("remove", this.card.id);
-    }*/
-    /*removeCard() {
-      this.$root.$data.cards = this.$root.$data.cards.fliter(
-        card => card.id != this.selectedId,
-        localStorage.setItem(JSON.stringify(this.$root.$data.cards))
-      );
-    }*/
+    remove() {
+      console.log(this.card.id);
+      let id = this.card.id;
+      let cardsData = JSON.parse(localStorage.getItem("card"));
+      console.log(cardsData);
+      var data = cardsData.filter(card => card.id != id);
+      console.log(data);
+      localStorage.setItem("card", JSON.stringify(data));
+      location.reload();
+    }
   }
 };
 </script>
 
 <style scoped>
 .card {
-  z-index: 1;
+  z-index: 5;
 }
 .cardItem {
   width: 24rem;
@@ -109,7 +107,7 @@ export default {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  grid-column: auto/span 2;
+  grid-column: auto/span 3;
   grid-row: auto/span 2;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
@@ -160,5 +158,28 @@ export default {
   -webkit-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
+}
+.remove {
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+  top: -10px;
+  right: -10px;
+  padding: 10px;
+  display: flex;
+  color: #fff;
+  font-size: 0.5rem;
+  background: rgb(219, 26, 26);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  transform: scale(0.8);
+}
+
+.remove:hover {
+  transition: 0.3s;
+  cursor: pointer;
+  transform: scale(0.9);
+  box-shadow: 0 0 15px rgba(#000, 0.5);
 }
 </style>

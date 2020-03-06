@@ -79,6 +79,7 @@ export default {
       }
     };
   },
+  //props: ["card"],
   methods: {
     emitUpdate() {
       this.$emit("updateCard", this.card);
