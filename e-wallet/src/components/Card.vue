@@ -6,7 +6,7 @@
       <header>
         <img v-bind:src="require(`@/assets/vendor-${card.type}.svg`)" v-if="card.type" />
         <img v-bind:src="require(`@/assets/${card.chip}`)" v-if="card.chip" />
-        <button class="remove" v-on:click="remove">X</button>
+        <button class="remove" v-on:click="remove(card.id)">X</button>
       </header>
       <section class="number">
         <p>{{formatCardNumber}}</p>
@@ -41,6 +41,10 @@ export default {
   },
   methods: {
     remove() {
+      this.$root.$emit("remove", this.card.id);
+    }
+    // do remove function in this page
+    /*remove() {
       console.log(this.card.id);
       let id = this.card.id;
       let cardsData = JSON.parse(localStorage.getItem("card"));
@@ -49,7 +53,7 @@ export default {
       console.log(data);
       localStorage.setItem("card", JSON.stringify(data));
       location.reload();
-    }
+    }*/
   }
 };
 </script>

@@ -35,6 +35,12 @@ new Vue({
       const parsed = JSON.stringify(this.cards);
       localStorage.setItem("card", parsed);
     });
+
+    this.$root.$on("remove", id => {
+      this.cards = JSON.parse(localStorage.getItem("card"));
+      this.cards = this.cards.filter(card => card.id != id);
+      localStorage.setItem("card", JSON.stringify(this.cards));
+    });
   },
 
   render: h => h(App)
